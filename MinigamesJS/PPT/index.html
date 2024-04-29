@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pedra, Papel, Tesoura</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Pedra, Papel ou Tesoura!</h1>
+    <h2 class="Vencedor"></h2>
+    <hr>
+    <div class="align">
+        <div class="player-options">
+            <div><img opt="Pedra" src="./img/rock.png" /></div>
+            <div><img opt="Papel" src="./img/paper.png" /></div>
+            <div><img opt="Tesoura" src="./img/scisor.png" /></div>
+        </div>
+        <div class="enemy-options">
+            <div><img opt="Pedra" src="./img/rock.png" /></div>
+            <div><img opt="Papel" src="./img/paper.png" /></div>
+            <div><img opt="Tesoura" src="./img/scisor.png" /></div>
+        </div>
+</div>
+    <script>
+        var elementos = document.querySelectorAll('.player-options div > img')
+        var playerOpt = ""
+        var inimigoOpt = ""
+
+        function validacao(){
+
+            let Vencedor = document.querySelector('.Vencedor')
+
+            if(playerOpt == "Papel"){
+
+                if(inimigoOpt == "Papel"){
+                    Vencedor.innerHTML = "Empate!"
+                    //Empate
+                }else if(inimigoOpt == "Tesoura"){
+                    Vencedor.innerHTML = "Vitória do Oponente!"
+                    //Perdeu
+                }else if(inimigoOpt == "Pedra"){
+                    Vencedor.innerHTML = "Você ganhou!"
+                    //Ganhou
+                }
+            }
+
+            if(playerOpt == "Tesoura"){
+
+                if(inimigoOpt == "Papel"){
+                    Vencedor.innerHTML = "Você Ganhou!"
+                    //Ganhou
+                }else if(inimigoOpt == "Tesoura"){
+                    Vencedor.innerHTML = "Empate!"
+                    //Empate
+                }else if(inimigoOpt == "Pedra"){
+                    Vencedor.innerHTML = "Vitória do Oponente!"
+                    //Perdeu
+                }
+             }
+
+             if(playerOpt == "Pedra"){
+
+                 if(inimigoOpt == "Papel"){
+                Vencedor.innerHTML = "Vitória do Oponente!"
+                    //Perdeu
+                 }else if(inimigoOpt == "Tesoura"){
+                Vencedor.innerHTML = "Você ganhou!"
+                    //Ganhou
+                 }else if(inimigoOpt == "Pedra"){
+                Vencedor.innerHTML = "Empate!"
+                     //Empate
+                 }
+             }
+
+        }
+
+        function resetInimigo(){
+            const enemyOptions = document.querySelectorAll('.enemy-options div')
+            for(var i = 0; i < enemyOptions.length; i++){
+                
+                enemyOptions[i].childNodes[0].style.opacity = 0
+                }
+            }
+
+        function inimigoJogar(){
+            let rand = Math.floor(Math.random()*3)
+            
+            const enemyOptions = document.querySelectorAll('.enemy-options div')
+
+            resetInimigo()
+
+            for(var i = 0; i < enemyOptions.length; i++){
+                if(i == rand){
+                    enemyOptions[i].childNodes[0].style.opacity = 1
+                    inimigoOpt = enemyOptions[i].childNodes[0].getAttribute('opt')
+                }
+            }
+
+        }
+
+        function resetOpacityPlayer(){
+            for(var i = 0; i < elementos.length; i++){
+                elementos[i].style.opacity = 0.3
+            }
+        }
+
+        for(var i = 0; i < elementos.length; i++){
+            elementos[i].addEventListener('click',function(t){
+                resetOpacityPlayer()
+                t.target.style.opacity = 1
+                playerOpt = t.target.getAttribute('opt')
+
+                inimigoJogar()
+                
+
+               // alert(playerOpt)
+            })
+        }
+
+    
+    </script>
+
+</body>
+</html>

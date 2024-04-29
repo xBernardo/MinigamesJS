@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    max-height: 100vh;
+    margin: 0 auto;
+    background-color: #000000;
+    font-family: "Fira Code", monospace;
+    color: #e5e9f0;
+    transition: 0.3s;
+    margin: 0 auto;
+}
+
+.player-options img,
+.enemy-options img
+{
+    max-width: 200px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.player-options,.enemy-options{
+    width:50%;
+}
+
+.align{
+    display: flex;
+}
